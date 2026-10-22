@@ -1,1057 +1,940 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🎂 Happy Birthday Shristy! 🎂</title>
-    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;600;700&family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet">
+    <title>Happy Birthday Shiristy ✨</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Playfair Display, Plus Jakarta Sans, Dancing Script -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Phosphor Icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <!-- Canvas Confetti -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <!-- Tone.js for Violin & Acoustic Serenade -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.49/Tone.js"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                        serif: ['"Playfair Display"', 'serif'],
+                        cursive: ['"Dancing Script"', 'cursive'],
+                    },
+                    colors: {
+                        cream: {
+                            50: '#fffdfa',
+                            100: '#fdfaf5',
+                            200: '#f8f1e5',
+                            300: '#f2e5cf',
+                            400: '#e5ceab',
+                            500: '#d4b383',
+                        },
+                        gold: {
+                            100: '#faf3e0',
+                            200: '#f5e7be',
+                            300: '#edd695',
+                            400: '#e2bf65',
+                            500: '#cca238',
+                            600: '#a88022',
+                        },
+                        roseGold: {
+                            50: '#fdf8f6',
+                            100: '#fbe8e3',
+                            200: '#f7d3c8',
+                            300: '#f0b3a1',
+                            400: '#e6876d',
+                            500: '#d96342',
+                            600: '#c54c2a',
+                            700: '#a33d21',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
-            font-family: 'Poppins', sans-serif;
-            overflow-x: hidden;
-            background: #0a0a1a;
-            color: #fff;
+            background-color: #fdfaf5;
+            background-image: 
+                radial-gradient(circle at 15% 20%, rgba(245, 231, 190, 0.35) 0%, transparent 40%),
+                radial-gradient(circle at 85% 60%, rgba(247, 211, 200, 0.3) 0%, transparent 45%),
+                radial-gradient(circle at 50% 90%, rgba(237, 214, 149, 0.25) 0%, transparent 50%);
+            background-attachment: fixed;
         }
 
-        /* ===== LANDING ===== */
-        #landing {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: radial-gradient(ellipse at center, #1a0533 0%, #0a0a1a 70%);
-            display: flex; align-items: center; justify-content: center;
-            flex-direction: column; z-index: 1000; cursor: pointer;
-            transition: opacity 1s ease, transform 1s ease;
-        }
-        #landing.hidden { opacity: 0; transform: scale(1.1); pointer-events: none; }
-        .gift-box { width: 120px; height: 120px; position: relative; animation: bounce 1.5s ease-in-out infinite; }
-        .gift-box .box {
-            width: 120px; height: 80px;
-            background: linear-gradient(135deg, #ff6b9d, #c44dff);
-            border-radius: 8px; position: absolute; bottom: 0;
-            box-shadow: 0 10px 40px rgba(196,77,255,0.4);
-        }
-        .gift-box .box::before { content:''; position:absolute; width:20px; height:100%; background:#ffd700; left:50%; transform:translateX(-50%); }
-        .gift-box .lid {
-            width: 130px; height: 25px;
-            background: linear-gradient(135deg, #ff85b3, #d466ff);
-            border-radius: 6px; position: absolute; top: 15px; left: -5px;
-            animation: lidWiggle 1.5s ease-in-out infinite;
-        }
-        .gift-box .lid::before { content:''; position:absolute; width:20px; height:100%; background:#ffd700; left:50%; transform:translateX(-50%); }
-        .gift-box .bow {
-            width: 40px; height: 20px; border: 4px solid #ffd700;
-            border-radius: 50% 50% 0 0; position: absolute; top: 0; left: 50%; transform: translateX(-50%);
-        }
-        .gift-box .bow::before,.gift-box .bow::after {
-            content:''; width:20px; height:15px; border:3px solid #ffd700;
-            border-radius:50%; position:absolute; top:5px;
-        }
-        .gift-box .bow::before { left:-15px; } .gift-box .bow::after { right:-15px; }
-        .landing-text { margin-top: 40px; text-align: center; }
-        .landing-text h2 { font-family:'Dancing Script',cursive; font-size:2rem; color:#c44dff; animation:pulse 2s ease-in-out infinite; }
-        .landing-text p { font-size:0.9rem; color:rgba(255,255,255,0.5); margin-top:15px; animation:blink 1.5s ease-in-out infinite; }
-
-        @keyframes bounce { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-20px)} }
-        @keyframes lidWiggle { 0%,100%{transform:rotate(0)} 25%{transform:rotate(3deg) translateY(-3px)} 75%{transform:rotate(-3deg) translateY(-3px)} }
-        @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.8;transform:scale(1.05)} }
-        @keyframes blink { 0%,100%{opacity:.5} 50%{opacity:1} }
-
-        #confetti-canvas { position:fixed; top:0; left:0; width:100%; height:100%; pointer-events:none; z-index:999; }
-        .main-content { opacity:0; transition:opacity 1.5s ease 0.5s; }
-        .main-content.visible { opacity:1; }
-
-        /* ===== HERO ===== */
-        .hero {
-            min-height: 100vh; display:flex; align-items:center; justify-content:center;
-            flex-direction:column; text-align:center; padding:20px; position:relative;
-            background: radial-gradient(ellipse at 30% 20%, rgba(196,77,255,0.15) 0%, transparent 50%),
-                        radial-gradient(ellipse at 70% 80%, rgba(255,107,157,0.15) 0%, transparent 50%), #0a0a1a;
-        }
-        .hero::before {
-            content:''; position:absolute; width:300px; height:300px;
-            background:radial-gradient(circle,rgba(196,77,255,0.2),transparent);
-            border-radius:50%; top:10%; left:10%; animation:float 8s ease-in-out infinite;
-        }
-        .hero::after {
-            content:''; position:absolute; width:250px; height:250px;
-            background:radial-gradient(circle,rgba(255,107,157,0.2),transparent);
-            border-radius:50%; bottom:10%; right:10%; animation:float 6s ease-in-out infinite reverse;
-        }
-        @keyframes float { 0%,100%{transform:translate(0,0)} 33%{transform:translate(30px,-30px)} 66%{transform:translate(-20px,20px)} }
-        .hero-content { position:relative; z-index:2; }
-        .emoji-rain { font-size:3rem; animation:emojiFloat 3s ease-in-out infinite; }
-        @keyframes emojiFloat { 0%,100%{transform:translateY(0) rotate(0)} 50%{transform:translateY(-15px) rotate(10deg)} }
-
-        .hero-photo {
-            width:180px; height:180px; border-radius:50%; object-fit:cover;
-            border:4px solid rgba(196,77,255,0.5);
-            box-shadow:0 0 40px rgba(196,77,255,0.3), 0 0 80px rgba(255,107,157,0.15);
-            margin-bottom:15px;
-            animation: heroPhotoIn 1.2s ease forwards, photoGlow 3s ease-in-out infinite;
-        }
-        @keyframes heroPhotoIn { from{opacity:0;transform:scale(0.5) rotate(-10deg)} to{opacity:1;transform:scale(1) rotate(0)} }
-        @keyframes photoGlow {
-            0%,100%{box-shadow:0 0 40px rgba(196,77,255,0.3),0 0 80px rgba(255,107,157,0.15)}
-            50%{box-shadow:0 0 60px rgba(196,77,255,0.5),0 0 100px rgba(255,107,157,0.3)}
+        .glass-panel {
+            background: rgba(255, 253, 249, 0.92);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(229, 206, 171, 0.6);
+            box-shadow: 0 20px 45px -10px rgba(180, 130, 90, 0.08);
         }
 
-        .hero h1 {
-            font-family:'Great Vibes',cursive; font-size:clamp(3rem,8vw,6rem);
-            background:linear-gradient(135deg,#ff6b9d,#c44dff,#ffd700,#ff6b9d);
-            background-size:300% 300%;
-            -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;
-            animation:gradientMove 4s ease-in-out infinite; margin:20px 0; line-height:1.2;
-        }
-        @keyframes gradientMove { 0%{background-position:0% 50%} 50%{background-position:100% 50%} 100%{background-position:0% 50%} }
-        .hero .subtitle {
-            font-family:'Dancing Script',cursive; font-size:clamp(1.5rem,4vw,2.5rem);
-            color:#ffd700; margin-bottom:10px; animation:fadeInUp 1s ease forwards; animation-delay:0.5s; opacity:0;
-        }
-        .hero .tagline {
-            font-size:1.1rem; color:rgba(255,255,255,0.7); max-width:600px; margin:0 auto;
-            animation:fadeInUp 1s ease forwards; animation-delay:1s; opacity:0;
-        }
-        @keyframes fadeInUp { from{opacity:0;transform:translateY(30px)} to{opacity:1;transform:translateY(0)} }
-        .scroll-indicator {
-            position:absolute; bottom:30px; left:50%; transform:translateX(-50%);
-            display:flex; flex-direction:column; align-items:center;
-            animation:fadeInUp 1s ease forwards; animation-delay:2s; opacity:0;
-        }
-        .scroll-indicator span { font-size:0.8rem; color:rgba(255,255,255,0.4); margin-bottom:8px; }
-        .scroll-arrow {
-            width:20px; height:20px; border-right:2px solid rgba(255,255,255,0.4);
-            border-bottom:2px solid rgba(255,255,255,0.4); transform:rotate(45deg);
-            animation:scrollBounce 2s ease-in-out infinite;
-        }
-        @keyframes scrollBounce { 0%,100%{transform:rotate(45deg) translate(0,0)} 50%{transform:rotate(45deg) translate(5px,5px)} }
-
-        .section-title {
-            font-family:'Great Vibes',cursive; font-size:clamp(2rem,5vw,3.5rem);
-            text-align:center;
-            background:linear-gradient(135deg,#ff6b9d,#c44dff);
-            -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;
-            margin-bottom:50px;
+        .glass-card {
+            background: #ffffff;
+            border: 1px solid rgba(237, 214, 149, 0.5);
+            box-shadow: 0 10px 30px -5px rgba(212, 179, 131, 0.12);
         }
 
-        /* ===== PHOTO GALLERY — MASONRY-STYLE ===== */
-        .gallery-section {
-            padding:80px 20px;
-            background:linear-gradient(180deg,#0a0a1a 0%,#1a0533 50%,#0a0a1a 100%);
+        .polaroid {
+            transition: all 0.45s cubic-bezier(0.16, 1, 0.3, 1);
         }
-        .gallery-subtitle {
-            text-align:center; color:rgba(255,255,255,0.6); margin-top:-35px; margin-bottom:50px;
-            font-family:'Dancing Script',cursive; font-size:1.4rem;
-        }
-        .gallery-grid {
-            display:grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-            gap:20px; max-width:1100px; margin:0 auto;
-        }
-        .gallery-item {
-            position:relative; border-radius:16px; overflow:hidden;
-            cursor:pointer; transition:all 0.5s cubic-bezier(0.23,1,0.32,1);
-            opacity:0; animation: galIn 0.7s ease forwards;
-            animation-delay: var(--d, 0s);
-        }
-        .gallery-item:nth-child(1) { --d:0.05s; grid-row:span 2; }
-        .gallery-item:nth-child(2) { --d:0.12s; }
-        .gallery-item:nth-child(3) { --d:0.19s; grid-row:span 2; }
-        .gallery-item:nth-child(4) { --d:0.26s; }
-        .gallery-item:nth-child(5) { --d:0.33s; }
-        .gallery-item:nth-child(6) { --d:0.40s; grid-row:span 2; }
-        .gallery-item:nth-child(7) { --d:0.47s; }
-        .gallery-item:nth-child(8) { --d:0.54s; }
-        .gallery-item:nth-child(9) { --d:0.61s; grid-row:span 2; }
-        .gallery-item:nth-child(10) { --d:0.68s; }
-
-        @keyframes galIn { from{opacity:0;transform:scale(0.85) translateY(30px)} to{opacity:1;transform:scale(1) translateY(0)} }
-
-        .gallery-item:hover {
-            transform:scale(1.04) translateY(-5px);
-            box-shadow:0 20px 60px rgba(196,77,255,0.35);
-            z-index:5;
-        }
-        .gallery-item img { width:100%; height:100%; object-fit:cover; display:block; min-height:220px; }
-        .gallery-item .overlay {
-            position:absolute; bottom:0; left:0; right:0;
-            background:linear-gradient(transparent, rgba(0,0,0,0.8));
-            padding:40px 15px 15px;
-            opacity:0; transition:opacity 0.4s;
-        }
-        .gallery-item:hover .overlay { opacity:1; }
-        .gallery-item .overlay span {
-            font-family:'Dancing Script',cursive; font-size:1.1rem; color:#ffd700;
+        .polaroid:hover {
+            transform: translateY(-8px) scale(1.025);
+            box-shadow: 0 25px 40px -10px rgba(204, 162, 56, 0.22);
+            border-color: rgba(226, 191, 101, 0.8);
         }
 
-        /* Glow border on hover */
-        .gallery-item::after {
-            content:''; position:absolute; inset:0;
-            border-radius:16px; border:2px solid transparent;
-            transition:border-color 0.4s;
+        @keyframes floatSlow {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-10px) rotate(1deg); }
         }
-        .gallery-item:hover::after { border-color:rgba(196,77,255,0.5); }
-
-        /* ===== LIGHTBOX ===== */
-        .lightbox {
-            position:fixed; top:0; left:0; width:100%; height:100%;
-            background:rgba(0,0,0,0.94); z-index:2000;
-            display:none; align-items:center; justify-content:center;
-            flex-direction:column; backdrop-filter:blur(12px);
-        }
-        .lightbox.open { display:flex; animation:lbFadeIn 0.3s ease; }
-        @keyframes lbFadeIn { from{opacity:0} to{opacity:1} }
-        .lightbox img {
-            max-width:85vw; max-height:75vh; object-fit:contain; border-radius:12px;
-            box-shadow:0 0 80px rgba(196,77,255,0.3); animation:lbZoom 0.4s cubic-bezier(0.23,1,0.32,1);
-        }
-        @keyframes lbZoom { from{transform:scale(0.7);opacity:0} to{transform:scale(1);opacity:1} }
-        .lightbox .lb-caption { font-family:'Dancing Script',cursive; font-size:1.5rem; color:#ffd700; margin-top:20px; text-align:center; }
-        .lightbox .lb-close {
-            position:absolute; top:25px; right:30px; font-size:2.5rem; color:#fff;
-            cursor:pointer; transition:transform 0.3s; background:none; border:none;
-        }
-        .lightbox .lb-close:hover { transform:rotate(90deg) scale(1.2); color:#ff6b9d; }
-        .lightbox .lb-nav {
-            position:absolute; top:50%; transform:translateY(-50%);
-            font-size:3rem; color:rgba(255,255,255,0.7); cursor:pointer; background:none; border:none;
-            transition:all 0.3s; padding:20px;
-        }
-        .lightbox .lb-nav:hover { color:#ffd700; transform:translateY(-50%) scale(1.2); }
-        .lightbox .lb-prev { left:10px; } .lightbox .lb-next { right:10px; }
-        .lb-counter { position:absolute; bottom:25px; font-size:0.9rem; color:rgba(255,255,255,0.5); }
-
-        /* ===== CAKE ===== */
-        .cake-section {
-            padding:80px 20px; display:flex; align-items:center; justify-content:center;
-            flex-direction:column;
-            background:linear-gradient(180deg,#0a0a1a 0%,#130a22 50%,#0a0a1a 100%);
-        }
-        .cake { position:relative; width:200px; margin-bottom:40px; }
-        .cake-layer-1 { width:200px; height:60px; background:linear-gradient(135deg,#ff85b3,#ff6b9d); border-radius:10px 10px 15px 15px; margin:0 auto; }
-        .cake-layer-2 { width:160px; height:50px; background:linear-gradient(135deg,#d466ff,#c44dff); border-radius:10px; margin:-5px auto 0; }
-        .cake-layer-3 { width:120px; height:45px; background:linear-gradient(135deg,#ffd700,#ffaa00); border-radius:10px; margin:-5px auto 0; }
-        .candle { width:8px; height:40px; background:linear-gradient(to top,#ffd700,#ffaa00); border-radius:3px; margin:-5px auto 0; position:relative; }
-        .flame {
-            width:14px; height:20px;
-            background:radial-gradient(ellipse at bottom,#ffd700 0%,#ff6b00 50%,transparent 100%);
-            border-radius:50% 50% 50% 50%/60% 60% 40% 40%;
-            position:absolute; top:-18px; left:50%; transform:translateX(-50%);
-            animation:flicker 0.3s ease-in-out infinite alternate;
-        }
-        @keyframes flicker { 0%{transform:translateX(-50%) scale(1) rotate(-2deg)} 100%{transform:translateX(-50%) scale(1.1) rotate(2deg)} }
-        .make-wish-text { font-family:'Dancing Script',cursive; font-size:2rem; color:#ffd700; text-align:center; animation:pulse 2s ease-in-out infinite; }
-
-        /* ===== WISHES ===== */
-        .wishes-section { padding:80px 20px; max-width:900px; margin:0 auto; }
-        .wish-card {
-            background:linear-gradient(135deg,rgba(196,77,255,0.1),rgba(255,107,157,0.1));
-            border:1px solid rgba(196,77,255,0.2); border-radius:20px;
-            padding:40px 30px; margin-bottom:30px; backdrop-filter:blur(10px);
-            transform:translateY(50px); opacity:0; transition:all 0.8s ease;
-            position:relative; overflow:hidden;
-        }
-        .wish-card.visible { transform:translateY(0); opacity:1; }
-        .wish-card::before {
-            content:''; position:absolute; top:-50%; left:-50%; width:200%; height:200%;
-            background:radial-gradient(circle,rgba(255,215,0,0.05),transparent 60%);
-            animation:shimmer 5s ease-in-out infinite;
-        }
-        @keyframes shimmer { 0%,100%{transform:translate(0,0)} 50%{transform:translate(30%,30%)} }
-        .wish-card .wish-emoji { font-size:2.5rem; margin-bottom:15px; }
-        .wish-card h3 { font-family:'Dancing Script',cursive; font-size:1.8rem; color:#ffd700; margin-bottom:15px; }
-        .wish-card p { font-size:1.05rem; line-height:1.8; color:rgba(255,255,255,0.85); position:relative; z-index:1; }
-
-        /* ===== PHOTO + QUOTE CARDS ===== */
-        .photo-quotes-section {
-            padding:80px 20px;
-            background:linear-gradient(180deg,#0a0a1a 0%,#1a0533 50%,#0a0a1a 100%);
-        }
-        .photo-quote-grid {
-            max-width:1100px; margin:0 auto; display:grid;
-            grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:35px;
-        }
-        .photo-quote-card {
-            background:linear-gradient(145deg,rgba(196,77,255,0.08),rgba(255,107,157,0.08));
-            border:1px solid rgba(196,77,255,0.15); border-radius:20px; overflow:hidden;
-            transition:all 0.6s cubic-bezier(0.23,1,0.32,1);
-            opacity:0; transform:translateY(40px);
-        }
-        .photo-quote-card.visible { opacity:1; transform:translateY(0); }
-        .photo-quote-card:hover { transform:translateY(-8px); box-shadow:0 20px 60px rgba(196,77,255,0.2); }
-        .photo-quote-card img { width:100%; height:320px; object-fit:cover; object-position:top; display:block; }
-        .photo-quote-card .pq-text { padding:25px; }
-        .photo-quote-card .pq-text blockquote {
-            font-family:'Dancing Script',cursive; font-size:1.25rem; color:#ffd700;
-            line-height:1.6; margin-bottom:10px; font-style:italic;
-        }
-        .photo-quote-card .pq-text .pq-sub { font-size:0.9rem; color:rgba(255,255,255,0.5); }
-
-        /* ===== QUOTES CAROUSEL ===== */
-        .quotes-section { padding:80px 20px; }
-        .quotes-carousel {
-            max-width:700px; margin:0 auto; text-align:center; position:relative;
-            min-height:250px; display:flex; align-items:center; justify-content:center;
-        }
-        .quote-slide { position:absolute; opacity:0; transform:scale(0.9); transition:all 0.8s ease; padding:40px; }
-        .quote-slide.active { opacity:1; transform:scale(1); }
-        .quote-slide .quote-mark { font-size:4rem; color:rgba(196,77,255,0.3); font-family:Georgia,serif; line-height:1; }
-        .quote-slide .quote-text { font-family:'Dancing Script',cursive; font-size:clamp(1.3rem,3vw,1.8rem); color:#fff; margin:15px 0; line-height:1.6; }
-        .quote-slide .quote-author { font-size:0.95rem; color:#ffd700; font-style:italic; }
-        .quote-dots { text-align:center; margin-top:30px; }
-        .quote-dot {
-            width:10px; height:10px; border-radius:50%; background:rgba(196,77,255,0.3);
-            display:inline-block; margin:0 5px; cursor:pointer; transition:all 0.3s;
-        }
-        .quote-dot.active { background:#c44dff; transform:scale(1.3); }
-
-        /* ===== SPECIAL QUALITIES ===== */
-        .memories-section { padding:80px 20px; max-width:800px; margin:0 auto; }
-        .memory-item {
-            display:flex; align-items:flex-start; margin-bottom:40px;
-            opacity:0; transform:translateX(-30px); transition:all 0.8s ease;
-        }
-        .memory-item.visible { opacity:1; transform:translateX(0); }
-        .memory-item:nth-child(even) { transform:translateX(30px); }
-        .memory-item:nth-child(even).visible { transform:translateX(0); }
-        .memory-icon { font-size:2.5rem; margin-right:20px; min-width:50px; text-align:center; animation:emojiFloat 3s ease-in-out infinite; }
-        .memory-content {
-            background:linear-gradient(135deg,rgba(255,107,157,0.08),rgba(196,77,255,0.08));
-            border-left:3px solid #c44dff; padding:25px; border-radius:0 15px 15px 0; flex:1;
-        }
-        .memory-content h4 { font-family:'Dancing Script',cursive; font-size:1.5rem; color:#ff6b9d; margin-bottom:10px; }
-        .memory-content p { color:rgba(255,255,255,0.8); line-height:1.7; }
-
-        /* ===== FINAL ===== */
-        .final-section {
-            min-height:100vh; display:flex; align-items:center; justify-content:center;
-            flex-direction:column; text-align:center; padding:40px 20px;
-            background:radial-gradient(ellipse at center,#1a0533 0%,#0a0a1a 70%); position:relative;
-        }
-        .final-section .big-heart { font-size:5rem; animation:heartbeat 1.2s ease-in-out infinite; }
-        @keyframes heartbeat { 0%,100%{transform:scale(1)} 15%{transform:scale(1.15)} 30%{transform:scale(1)} 45%{transform:scale(1.1)} }
-        .final-message { max-width:650px; margin:30px auto; }
-        .final-message h2 {
-            font-family:'Great Vibes',cursive; font-size:clamp(2.5rem,6vw,4rem);
-            background:linear-gradient(135deg,#ffd700,#ff6b9d,#c44dff);
-            -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;
-            margin-bottom:25px;
-        }
-        .final-message p { font-size:1.15rem; line-height:1.9; color:rgba(255,255,255,0.85); margin-bottom:15px; }
-        .final-message .signature { font-family:'Dancing Script',cursive; font-size:1.8rem; color:#ffd700; margin-top:30px; }
-
-        .floating-hearts { position:fixed; top:0; left:0; width:100%; height:100%; pointer-events:none; z-index:998; overflow:hidden; }
-        .floating-heart { position:absolute; bottom:-50px; font-size:1.5rem; opacity:0.6; animation:floatUp linear infinite; }
-        @keyframes floatUp { 0%{transform:translateY(0) rotate(0);opacity:.6} 100%{transform:translateY(-110vh) rotate(360deg);opacity:0} }
-        .sparkle { position:fixed; width:4px; height:4px; background:#ffd700; border-radius:50%; pointer-events:none; z-index:997; animation:sparkle 2s ease-in-out infinite; }
-        @keyframes sparkle { 0%,100%{opacity:0;transform:scale(0)} 50%{opacity:1;transform:scale(1)} }
-        .music-toggle {
-            position:fixed; bottom:25px; right:25px; width:50px; height:50px; border-radius:50%;
-            background:linear-gradient(135deg,#c44dff,#ff6b9d); border:none; cursor:pointer; z-index:1001;
-            display:flex; align-items:center; justify-content:center; font-size:1.5rem;
-            box-shadow:0 5px 20px rgba(196,77,255,0.4); transition:transform 0.3s;
-        }
-        .music-toggle:hover { transform:scale(1.1); }
-        .music-toggle.playing { animation:pulse 1s ease-in-out infinite; }
-        .music-controls {
-            position:fixed; bottom:85px; right:15px; z-index:1001;
-            background:rgba(20,10,40,0.9); backdrop-filter:blur(10px);
-            border:1px solid rgba(196,77,255,0.3); border-radius:15px;
-            padding:15px 18px; min-width:170px;
-            opacity:0; transform:translateY(10px) scale(0.95);
-            pointer-events:none; transition:all 0.3s ease;
-        }
-        .music-controls.show { opacity:1; transform:translateY(0) scale(1); pointer-events:all; }
-        .music-controls label {
-            font-size:0.75rem; color:rgba(255,255,255,0.6); display:block; margin-bottom:6px;
-            font-family:'Poppins',sans-serif;
-        }
-        .music-controls input[type="range"] {
-            width:100%; accent-color:#c44dff; cursor:pointer;
-        }
-        .music-controls .vol-value {
-            font-size:0.7rem; color:#ffd700; text-align:right; margin-top:2px;
+        .float-anim {
+            animation: floatSlow 6s ease-in-out infinite;
         }
 
-        .add-photos-note {
-            text-align:center; margin-top:40px; padding:20px;
-            border:2px dashed rgba(196,77,255,0.3); border-radius:15px;
-            max-width:300px; margin-left:auto; margin-right:auto;
-            color:rgba(255,255,255,0.4); font-size:0.9rem; transition:all 0.3s;
+        @keyframes shimmerGold {
+            0% { background-position: -200% 0; }
+            100% { background-position: 200% 0; }
         }
-        .add-photos-note:hover { border-color:rgba(196,77,255,0.6); color:rgba(255,255,255,0.6); }
-        .add-photos-note span { font-size:2rem; display:block; margin-bottom:8px; }
+        .gold-shimmer {
+            background: linear-gradient(90deg, #b8860b 0%, #ffd700 30%, #fff8dc 50%, #ffd700 70%, #b8860b 100%);
+            background-size: 200% auto;
+            color: transparent;
+            -webkit-background-clip: text;
+            background-clip: text;
+            animation: shimmerGold 5s linear infinite;
+        }
 
-        @media (max-width:768px) {
-            .gallery-grid { grid-template-columns:repeat(2,1fr); gap:12px; }
-            .gallery-item { grid-row:span 1 !important; }
-            .gallery-item img { min-height:180px; }
-            .photo-quote-grid { grid-template-columns:1fr; max-width:400px; }
+        /* Floating gold petals */
+        .petal {
+            position: absolute;
+            pointer-events: none;
+            background: radial-gradient(circle, rgba(237, 214, 149, 0.55), rgba(240, 179, 161, 0.35));
+            border-radius: 50% 0 50% 50%;
+            animation: floatPetal linear infinite;
         }
-        @media (max-width:480px) {
-            .gallery-grid { grid-template-columns:repeat(2,1fr); gap:8px; }
-            .gallery-item img { min-height:150px; }
-            .wish-card { padding:25px 20px; }
-            .memory-item { flex-direction:column; align-items:center; text-align:center; }
-            .memory-icon { margin-right:0; margin-bottom:15px; }
-            .memory-content { border-left:none; border-top:3px solid #c44dff; border-radius:0 0 15px 15px; }
+        @keyframes floatPetal {
+            0% {
+                transform: translateY(-50px) rotate(0deg) scale(0.8);
+                opacity: 0;
+            }
+            15% { opacity: 0.7; }
+            85% { opacity: 0.6; }
+            100% {
+                transform: translateY(105vh) rotate(360deg) scale(1.1);
+                opacity: 0;
+            }
         }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #fdfaf5; }
+        ::-webkit-scrollbar-thumb { background: #edd695; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #cca238; }
     </style>
 </head>
-<body>
+<body class="text-stone-800 font-sans antialiased selection:bg-amber-200 selection:text-amber-950 overflow-x-hidden">
 
-    <!-- LANDING -->
-    <div id="landing" onclick="openGift()">
-        <div class="gift-box"><div class="bow"></div><div class="lid"></div><div class="box"></div></div>
-        <div class="landing-text">
-            <h2>A Special Surprise for Shristy ✨</h2>
-            <p>🎁 Tap to open your gift 🎁</p>
+    <!-- ========================================== -->
+    <!-- 1. WELCOME OVERLAY -->
+    <!-- ========================================== -->
+    <div id="welcomeOverlay" class="fixed inset-0 z-50 bg-stone-900/85 backdrop-blur-md flex items-center justify-center p-4 transition-all duration-700">
+        <div class="glass-panel max-w-md w-full rounded-3xl p-8 sm:p-10 text-center shadow-2xl border border-amber-200/80 relative overflow-hidden bg-gradient-to-b from-[#fffdfa] to-[#fcf6ec]">
+            <div class="absolute -top-24 -left-24 w-48 h-48 bg-amber-300/25 rounded-full blur-3xl pointer-events-none"></div>
+            <div class="absolute -bottom-24 -right-24 w-48 h-48 bg-rose-300/25 rounded-full blur-3xl pointer-events-none"></div>
+
+            <div class="w-20 h-20 rounded-full bg-gradient-to-tr from-amber-500 via-amber-400 to-amber-200 text-stone-900 flex items-center justify-center mx-auto mb-6 shadow-xl shadow-amber-500/30 animate-bounce border-2 border-amber-100">
+                <i class="ph-fill ph-sparkle text-3xl text-amber-900"></i>
+            </div>
+
+            <span class="inline-block px-4 py-1 rounded-full bg-amber-100/90 text-amber-800 text-xs font-semibold tracking-widest uppercase mb-3 border border-amber-200/60">
+                Special Delivery ✨
+            </span>
+            <h1 class="font-serif text-3xl sm:text-4xl font-bold text-stone-900 mb-3">For Shiristy ✨</h1>
+            <p class="text-stone-600 text-sm sm:text-base mb-8 leading-relaxed font-light">
+                Every moment with you is a gift to the world. Tap below to unveil your golden birthday experience with music, memories & warm wishes.
+            </p>
+
+            <button onclick="openExperience()" class="w-full py-4 px-6 rounded-2xl bg-gradient-to-r from-amber-600 via-amber-500 to-amber-600 hover:from-amber-700 hover:to-amber-600 text-white font-semibold shadow-lg shadow-amber-500/35 transition-all transform hover:-translate-y-0.5 active:translate-y-0 flex items-center justify-center gap-2 group cursor-pointer">
+                <span class="tracking-wide">Open Birthday Surprise</span>
+                <i class="ph-bold ph-arrow-right group-hover:translate-x-1 transition-transform"></i>
+            </button>
         </div>
     </div>
 
-    <canvas id="confetti-canvas"></canvas>
-    <div class="floating-hearts" id="floating-hearts"></div>
+    <!-- ========================================== -->
+    <!-- 2. FLOATING PETALS CONTAINER -->
+    <!-- ========================================== -->
+    <div id="petalsContainer" class="fixed inset-0 pointer-events-none z-0 overflow-hidden"></div>
 
-    <!-- LIGHTBOX -->
-    <div class="lightbox" id="lightbox">
-        <button class="lb-close" onclick="closeLightbox()">✕</button>
-        <button class="lb-nav lb-prev" onclick="navLightbox(-1)">‹</button>
-        <button class="lb-nav lb-next" onclick="navLightbox(1)">›</button>
-        <img id="lb-img" src="" alt="">
-        <div class="lb-caption" id="lb-caption"></div>
-        <div class="lb-counter" id="lb-counter"></div>
+    <!-- ========================================== -->
+    <!-- 3. NAVIGATION BAR -->
+    <!-- ========================================== -->
+    <nav class="sticky top-0 z-40 glass-panel border-b border-amber-200/50 px-4 sm:px-8 py-3.5 transition-all">
+        <div class="max-w-6xl mx-auto flex items-center justify-between">
+            <a href="#" class="flex items-center gap-2.5 group">
+                <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-amber-500 to-amber-300 text-stone-900 flex items-center justify-center shadow-md shadow-amber-500/20 group-hover:scale-105 transition-transform">
+                    <i class="ph-fill ph-crown text-lg"></i>
+                </div>
+                <span class="font-serif font-bold text-lg sm:text-xl text-stone-900 tracking-tight">Shiristy's Day</span>
+            </a>
+
+            <!-- Quick Nav Links -->
+            <div class="hidden md:flex items-center gap-7 text-sm font-medium text-stone-600">
+                <a href="#gallery" class="hover:text-amber-700 transition-colors">Memories</a>
+                <a href="#letter" class="hover:text-amber-700 transition-colors">Heartfelt Letter</a>
+                <a href="#quotes" class="hover:text-amber-700 transition-colors">The Birthday Jar</a>
+                <a href="#cake" class="hover:text-amber-700 transition-colors">Make a Wish</a>
+            </div>
+
+            <!-- Music & Action Buttons -->
+            <div class="flex items-center gap-2.5">
+                <button onclick="toggleMusic()" id="musicToggleBtn" class="flex items-center gap-2 px-3.5 py-2 rounded-full bg-white hover:bg-amber-50 border border-amber-300/80 shadow-sm text-xs sm:text-sm font-semibold text-amber-900 transition-all cursor-pointer">
+                    <i id="musicIcon" class="ph-fill ph-music-notes text-amber-600 text-base"></i>
+                    <span id="musicText">Play Serenade 🎵</span>
+                </button>
+                <button onclick="burstHearts()" class="p-2.5 rounded-full bg-gradient-to-tr from-rose-500 to-amber-500 hover:from-rose-600 hover:to-amber-600 text-white shadow-md shadow-amber-500/20 transition-all hover:scale-105 cursor-pointer" title="Send Love & Confetti">
+                    <i class="ph-fill ph-heart text-base"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ========================================== -->
+    <!-- 4. HERO SECTION (Golden Cream Aesthetic) -->
+    <!-- ========================================== -->
+    <header class="relative z-10 pt-12 pb-16 sm:pt-20 sm:pb-24 px-4 text-center">
+        <div class="max-w-4xl mx-auto">
+            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-amber-100/90 border border-amber-300/70 text-amber-900 text-xs sm:text-sm font-semibold uppercase tracking-widest mb-6 shadow-sm float-anim">
+                <i class="ph-fill ph-crown text-amber-600"></i>
+                <span>Happy Birthday to My Absolute Heaven</span>
+            </div>
+
+            <h1 class="font-serif text-4xl sm:text-6xl md:text-7xl font-bold text-stone-900 tracking-tight mb-6 leading-tight">
+                To the Girl Who is <br class="hidden sm:inline"/>
+                <span class="gold-shimmer font-serif">My Absolute Heaven</span>
+            </h1>
+
+            <p class="text-stone-600 text-base sm:text-xl font-normal max-w-2xl mx-auto leading-relaxed mb-10 font-light">
+                You are what makes heaven beautiful. Even now, with everything between us, my heart holds a very special place just for you. Wishing you the happiest, most radiant birthday today, Shiristy.
+            </p>
+
+            <div class="flex flex-wrap items-center justify-center gap-4">
+                <a href="#gallery" class="px-7 py-3.5 rounded-2xl bg-gradient-to-r from-amber-600 to-amber-700 hover:from-amber-700 hover:to-amber-800 text-white font-semibold shadow-lg shadow-amber-700/20 transition-all flex items-center gap-2">
+                    <i class="ph-fill ph-images"></i>
+                    <span>Explore Memories</span>
+                </a>
+                <a href="#letter" class="px-7 py-3.5 rounded-2xl bg-white hover:bg-amber-50/70 text-stone-800 font-semibold border border-amber-300/80 shadow-sm transition-all flex items-center gap-2">
+                    <i class="ph-fill ph-envelope-simple-open text-amber-600"></i>
+                    <span>Read Letter</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- ========================================== -->
+    <!-- 5. MEMORY GALLERY WITH RESPONSIVE VECTOR FALLBACKS -->
+    <!-- ========================================== -->
+    <section id="gallery" class="max-w-6xl mx-auto px-4 sm:px-6 py-12 sm:py-16">
+        <div class="text-center max-w-xl mx-auto mb-12">
+            <span class="text-xs uppercase tracking-[0.25em] text-amber-700 font-semibold">Glimpses of You</span>
+            <h2 class="font-serif text-3xl sm:text-4xl font-bold text-stone-900 mt-1">Shades of Shiristy</h2>
+            <p class="text-stone-500 text-sm sm:text-base mt-2">Every single photo and illustration captures a piece of your timeless grace. Tap any card to view it in full splendor.</p>
+        </div>
+
+        <div id="galleryGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+            <!-- Dynamically injected art memories with robust vector fallbacks -->
+        </div>
+
+        <!-- Toggle all photos button -->
+        <div class="text-center mt-10">
+            <button id="showAllBtn" onclick="toggleAllPhotos()" class="px-7 py-3 rounded-full bg-white hover:bg-amber-50 border border-amber-300/80 text-amber-900 text-sm font-semibold shadow-sm transition-all inline-flex items-center gap-2 cursor-pointer">
+                <i class="ph-fill ph-sparkle text-amber-600"></i>
+                <span id="showAllBtnText">Show All 21 Moments ✨</span>
+            </button>
+        </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- 6. HEARTFELT ROMANTIC LETTER SECTION -->
+    <!-- ========================================== -->
+    <section id="letter" class="max-w-3xl mx-auto px-4 sm:px-6 py-16">
+        <div class="bg-gradient-to-b from-[#fffdfa] to-[#faf3e8] rounded-3xl p-8 sm:p-12 md:p-14 border border-amber-300/70 shadow-2xl relative">
+            <div class="w-14 h-14 rounded-full bg-gradient-to-tr from-amber-500 to-rose-400 text-white flex items-center justify-center mx-auto -mt-14 mb-6 shadow-lg border-4 border-[#fffdfa]">
+                <i class="ph-fill ph-heart text-2xl"></i>
+            </div>
+
+            <div class="text-center mb-8">
+                <p class="text-xs uppercase tracking-[0.25em] text-amber-700 font-semibold">Written From My Heart</p>
+                <h2 class="font-serif text-3xl sm:text-4xl font-bold text-stone-900 mt-1">My Dearest Shiristy,</h2>
+            </div>
+
+            <div class="space-y-5 text-stone-700 leading-relaxed text-base sm:text-lg font-serif">
+                <p>
+                    I haven’t met you like I do. I know where heaven is. It is by my side on those late-night talks when we sit together. Heaven is inside my heart in a very deep place that only one person has ever and will ever reach—and that is you.
+                </p>
+                <p>
+                    You are my heaven. You are what makes heaven beautiful, and I will not accept any other form of heaven, as I live in you and you in me.
+                </p>
+                <p>
+                    Even now, with everything between us, we still talk and the feelings remain. You know as well as I do how deeply connected we still are, and how much you still mean to me. 
+                </p>
+                <p>
+                    On your birthday today, I just want you to feel cherished and know that no matter where life takes us, my heart holds a very special place just for you. Have the happiest birthday, Shiristy.
+                </p>
+            </div>
+
+            <div class="mt-10 pt-6 border-t border-amber-200/80 flex flex-col sm:flex-row items-center justify-between gap-4">
+                <div>
+                    <p class="text-xs uppercase tracking-widest text-stone-400">Wishing you the best today and always,</p>
+                    <p class="font-serif italic text-2xl text-amber-700 font-semibold">Someone who cares for you deeply ✨</p>
+                </div>
+                <div>
+                    <button onclick="burstHearts()" class="px-6 py-3 rounded-full bg-amber-100 hover:bg-amber-200/80 text-amber-900 border border-amber-300 text-xs font-semibold uppercase tracking-wider flex items-center gap-1.5 transition-all shadow-sm cursor-pointer">
+                        <i class="ph-fill ph-heart text-rose-500"></i>
+                        <span>Send Warm Wishes</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- 7. THE BIRTHDAY JAR (Daily Compliment & Quotes) -->
+    <!-- ========================================== -->
+    <section id="quotes" class="max-w-4xl mx-auto px-4 sm:px-6 py-16">
+        <div class="glass-panel rounded-3xl p-8 sm:p-12 text-center relative overflow-hidden shadow-xl border border-amber-200/80">
+            <span class="text-xs uppercase tracking-[0.25em] text-amber-700 font-semibold">The Birthday Jar</span>
+            <h2 class="font-serif text-3xl font-bold text-stone-900 mt-1 mb-4">A Note Just For You</h2>
+            <p class="text-stone-600 text-sm sm:text-base max-w-lg mx-auto mb-8 font-light">
+                Tap the button below whenever you need a reminder of how extraordinary and precious you are.
+            </p>
+
+            <div id="jarNoteBox" class="bg-white/95 rounded-2xl p-6 sm:p-8 border border-amber-200/70 shadow-inner min-h-[140px] flex items-center justify-center mb-8 transition-all">
+                <p id="jarNoteText" class="font-serif italic text-lg sm:text-xl text-stone-800">
+                    "Your smile has a way of turning ordinary days into unforgettable memories. Happy Birthday, Shiristy!"
+                </p>
+            </div>
+
+            <button onclick="drawJarNote()" class="px-7 py-3 rounded-full bg-amber-600 hover:bg-amber-700 text-white font-semibold text-sm shadow-md shadow-amber-600/30 transition-all inline-flex items-center gap-2 cursor-pointer">
+                <i class="ph-fill ph-sparkle"></i>
+                <span>Draw Another Note</span>
+            </button>
+        </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- 8. INTERACTIVE BIRTHDAY CAKE & WISH -->
+    <!-- ========================================== -->
+    <section id="cake" class="max-w-4xl mx-auto px-4 sm:px-6 py-16 mb-20 text-center">
+        <div class="bg-gradient-to-b from-white to-amber-50/60 rounded-3xl p-8 sm:p-12 border border-amber-200/80 shadow-xl relative overflow-hidden">
+            <span class="text-xs uppercase tracking-[0.25em] text-amber-700 font-semibold">Make a Wish</span>
+            <h2 class="font-serif text-3xl sm:text-4xl font-bold text-stone-900 mt-1 mb-3">Blow Out Your Candles</h2>
+            <p class="text-stone-600 text-sm sm:text-base max-w-md mx-auto mb-10 font-light">
+                Close your eyes, make your deepest birthday wish, and tap the cake to blow out your candles!
+            </p>
+
+            <!-- Cake Graphic Container -->
+            <div class="relative w-48 sm:w-60 h-56 mx-auto mb-8 flex flex-col items-center justify-end">
+                <div class="flex gap-4 sm:gap-6 mb-2 z-20">
+                    <div class="flex flex-col items-center">
+                        <div id="flame1" class="w-3.5 h-6 rounded-full bg-amber-400 shadow-[0_0_15px_#f59e0b] animate-pulse cursor-pointer" onclick="blowOutCandles()"></div>
+                        <div class="w-2 h-8 bg-amber-100 rounded-sm"></div>
+                    </div>
+                    <div class="flex flex-col items-center">
+                        <div id="flame2" class="w-3.5 h-6 rounded-full bg-amber-400 shadow-[0_0_15px_#f59e0b] animate-pulse cursor-pointer" onclick="blowOutCandles()"></div>
+                        <div class="w-2 h-8 bg-amber-100 rounded-sm"></div>
+                    </div>
+                    <div class="flex flex-col items-center">
+                        <div id="flame3" class="w-3.5 h-6 rounded-full bg-amber-400 shadow-[0_0_15px_#f59e0b] animate-pulse cursor-pointer" onclick="blowOutCandles()"></div>
+                        <div class="w-2 h-8 bg-amber-100 rounded-sm"></div>
+                    </div>
+                </div>
+
+                <div class="w-32 h-14 bg-gradient-to-r from-amber-200 to-amber-300 rounded-t-2xl shadow-md border-t border-amber-100 relative flex items-center justify-center cursor-pointer" onclick="blowOutCandles()">
+                    <div class="absolute inset-x-0 top-0 h-4 bg-white/80 rounded-t-2xl"></div>
+                    <span class="text-xs font-bold text-amber-900 tracking-widest z-10">SHIRISTY</span>
+                </div>
+                <div class="w-40 h-14 bg-gradient-to-r from-amber-300 to-amber-400 rounded-t-xl shadow-md relative cursor-pointer" onclick="blowOutCandles()">
+                    <div class="absolute inset-x-0 top-0 h-4 bg-white/80 rounded-t-xl"></div>
+                </div>
+                <div class="w-48 h-16 bg-gradient-to-r from-amber-400 to-amber-500 rounded-t-2xl shadow-xl relative cursor-pointer" onclick="blowOutCandles()">
+                    <div class="absolute inset-x-0 top-0 h-4 bg-white/90 rounded-t-2xl"></div>
+                </div>
+                <div class="w-56 h-3 bg-stone-300 rounded-full shadow-md"></div>
+            </div>
+
+            <div id="wishMessage" class="hidden mb-6 p-4 rounded-2xl bg-amber-100/90 text-amber-950 font-serif text-lg font-medium max-w-md mx-auto border border-amber-300">
+                ✨ Your wish has been cast into the stars! May every single dream you hold come true this year.
+            </div>
+
+            <div class="flex items-center justify-center gap-4">
+                <button onclick="blowOutCandles()" id="blowBtn" class="px-6 py-3 rounded-full bg-amber-600 hover:bg-amber-700 text-white font-semibold text-sm shadow-lg shadow-amber-600/30 transition-all flex items-center gap-2 cursor-pointer">
+                    <i class="ph-fill ph-wind"></i>
+                    <span>Blow Out Candles</span>
+                </button>
+                <button onclick="resetCandles()" class="px-6 py-3 rounded-full bg-white hover:bg-stone-50 text-stone-700 font-semibold text-sm border border-stone-300 shadow-sm transition-all cursor-pointer">
+                    Relight Candles
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- 9. LIGHTBOX MODAL WITH FULL CONTROLS -->
+    <!-- ========================================== -->
+    <div id="lightboxModal" class="fixed inset-0 z-50 bg-stone-950/90 backdrop-blur-md hidden items-center justify-center p-4">
+        <div class="relative max-w-3xl w-full max-h-[92vh] flex flex-col items-center">
+            <!-- Close button -->
+            <button onclick="closeLightbox()" class="absolute -top-12 right-0 text-white/80 hover:text-amber-300 p-2 text-2xl transition-colors cursor-pointer">
+                <i class="ph-bold ph-x"></i>
+            </button>
+
+            <!-- Navigation buttons -->
+            <button onclick="navLightbox(-1)" class="absolute left-2 sm:-left-12 top-1/2 -translate-y-1/2 text-white/70 hover:text-amber-300 p-2 text-3xl transition-colors z-20 cursor-pointer">
+                <i class="ph-bold ph-caret-left"></i>
+            </button>
+            <button onclick="navLightbox(1)" class="absolute right-2 sm:-right-12 top-1/2 -translate-y-1/2 text-white/70 hover:text-amber-300 p-2 text-3xl transition-colors z-20 cursor-pointer">
+                <i class="ph-bold ph-caret-right"></i>
+            </button>
+            
+            <!-- Dynamic Image or Fallback Vector -->
+            <div id="lightboxContent" class="w-full flex items-center justify-center max-h-[70vh] mb-4">
+                <img id="lightboxImg" src="" alt="Enlarged Memory" class="max-h-[70vh] w-auto max-w-full object-contain rounded-2xl shadow-2xl border border-stone-800 transition-all duration-300" />
+                <div id="lightboxFallback" class="hidden w-full max-w-md aspect-[4/5] rounded-3xl shadow-2xl flex-col items-center justify-center text-white p-8 text-center relative border border-white/20">
+                    <div class="w-20 h-20 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center mb-5 z-10 shadow-xl border border-white/30">
+                        <i id="lightboxFallbackIcon" class="ph-fill ph-heart text-4xl text-white"></i>
+                    </div>
+                    <h2 id="lightboxFallbackTitle" class="font-serif text-2xl font-bold mb-2 z-10 drop-shadow-lg"></h2>
+                    <p id="lightboxFallbackCaption" class="text-white/90 text-sm font-medium z-10 leading-relaxed"></p>
+                </div>
+            </div>
+            
+            <div class="text-center px-4">
+                <h3 id="lightboxTitle" class="font-serif text-xl sm:text-2xl font-bold text-amber-200 mb-1"></h3>
+                <p id="lightboxCaption" class="text-stone-300 text-sm sm:text-base max-w-lg mx-auto font-light"></p>
+                <div class="flex items-center justify-center gap-4 mt-3">
+                    <span id="lightboxIndex" class="text-xs text-amber-300/70 uppercase tracking-widest font-semibold"></span>
+                    <button onclick="rotateLightboxImage()" class="px-3.5 py-1.5 rounded-lg bg-stone-800 hover:bg-stone-700 text-stone-200 text-xs font-semibold flex items-center gap-1.5 border border-stone-700 transition-colors cursor-pointer">
+                        <i class="ph-bold ph-arrow-clockwise"></i> Rotate 90°
+                    </button>
+                </div>
+            </div>
+        </div>
     </div>
 
-    <!-- MAIN CONTENT -->
-    <div class="main-content" id="main-content">
-
-        <!-- HERO -->
-        <section class="hero">
-            <div class="hero-content">
-                <div class="emoji-rain">🎂 🎈 🎉 🎊 🌟</div>
-                <img src="photos/photo2.jpg" alt="Shristy" class="hero-photo">
-                <h1>Happy Birthday, Shristy!</h1>
-                <p class="subtitle">Wishing You a Day as Beautiful as You Are</p>
-                <p class="tagline">Today the world celebrates someone truly extraordinary. Every moment with you is a gift, and today we celebrate the most wonderful gift of all — you.</p>
-            </div>
-            <div class="scroll-indicator"><span>Scroll down for more</span><div class="scroll-arrow"></div></div>
-        </section>
-
-        <!-- PHOTO GALLERY -->
-        <section class="gallery-section">
-            <h2 class="section-title">📸 Beautiful Moments</h2>
-            <p class="gallery-subtitle">Every picture tells a story of someone amazing ✨</p>
-
-            <div class="gallery-grid" id="gallery-grid">
-                <div class="gallery-item" onclick="openLightbox(0)">
-                    <img src="photos/photo1.jpg" alt="Shristy">
-                    <div class="overlay"><span>Gorgeous vibes ✨</span></div>
-                </div>
-                <div class="gallery-item" onclick="openLightbox(1)">
-                    <img src="photos/photo2.jpg" alt="Shristy">
-                    <div class="overlay"><span>That cute smile 💕</span></div>
-                </div>
-                <div class="gallery-item" onclick="openLightbox(2)">
-                    <img src="photos/photo3.jpg" alt="Shristy">
-                    <div class="overlay"><span>Pure happiness 😊</span></div>
-                </div>
-                <div class="gallery-item" onclick="openLightbox(3)">
-                    <img src="photos/photo4.jpg" alt="Shristy">
-                    <div class="overlay"><span>Mood: Stunning 💫</span></div>
-                </div>
-                <div class="gallery-item" onclick="openLightbox(4)">
-                    <img src="photos/photo5.jpg" alt="Shristy">
-                    <div class="overlay"><span>The sweetest soul 🌸</span></div>
-                </div>
-                <div class="gallery-item" onclick="openLightbox(5)">
-                    <img src="photos/photo6.png" alt="Shristy">
-                    <div class="overlay"><span>Cutest ever 🧸💖</span></div>
-                </div>
-                <div class="gallery-item" onclick="openLightbox(6)">
-                    <img src="photos/photo7.jpg" alt="Shristy">
-                    <div class="overlay"><span>Just a Wednesday ✨</span></div>
-                </div>
-                <div class="gallery-item" onclick="openLightbox(7)">
-                    <img src="photos/photo8.jpg" alt="Shristy">
-                    <div class="overlay"><span>Little buddy 🐻💙</span></div>
-                </div>
-                <div class="gallery-item" onclick="openLightbox(8)">
-                    <img src="photos/photo9.jpg" alt="Shristy">
-                    <div class="overlay"><span>Bullet vibes 🏍️🔥</span></div>
-                </div>
-                <div class="gallery-item" onclick="openLightbox(9)">
-                    <img src="photos/photo10.jpg" alt="Shristy">
-                    <div class="overlay"><span>Camera roll gem 📷</span></div>
-                </div>
-            </div>
-
-            <div class="add-photos-note">
-                <span>📷</span>
-                More memories coming soon...
-            </div>
-        </section>
-
-        <!-- CAKE -->
-        <section class="cake-section">
-            <div class="cake">
-                <div class="candle"><div class="flame"></div></div>
-                <div class="cake-layer cake-layer-3"></div>
-                <div class="cake-layer cake-layer-2"></div>
-                <div class="cake-layer cake-layer-1"></div>
-            </div>
-            <p class="make-wish-text">✨ Make a Wish, Shristy! ✨</p>
-        </section>
-
-        <!-- HEARTFELT WISHES -->
-        <section class="wishes-section">
-            <h2 class="section-title">💌 Heartfelt Wishes for You</h2>
-
-            <div class="wish-card" data-animate>
-                <div class="wish-emoji">🌸</div>
-                <h3>A World of Happiness</h3>
-                <p>Dear Shristy, on your special day, I wish you a world full of happiness that knows no bounds. May your smile never fade, may your heart always be light, and may every sunrise bring you a new reason to be grateful. You deserve all the beauty this world has to offer.</p>
-            </div>
-            <div class="wish-card" data-animate>
-                <div class="wish-emoji">⭐</div>
-                <h3>Dreams Coming True</h3>
-                <p>May this birthday be the beginning of a year where all your dreams start turning into reality. Every goal you set, every aspiration you hold dear — may they all unfold beautifully. The universe has incredible plans for someone as wonderful as you.</p>
-            </div>
-            <div class="wish-card" data-animate>
-                <div class="wish-emoji">🦋</div>
-                <h3>Endless Love & Light</h3>
-                <p>You bring so much love and light into the lives of everyone around you. Today, I hope that same warmth wraps around you like a cozy blanket. May you feel deeply loved, incredibly cherished, and genuinely appreciated — today and every day.</p>
-            </div>
-            <div class="wish-card" data-animate>
-                <div class="wish-emoji">🌈</div>
-                <h3>Adventures Ahead</h3>
-                <p>Life is a beautiful adventure, and you are one of its most beautiful chapters. May this new year of your life be filled with exciting journeys, meaningful connections, unexpected joys, and moments so magical they take your breath away.</p>
-            </div>
-            <div class="wish-card" data-animate>
-                <div class="wish-emoji">💫</div>
-                <h3>Strength & Grace</h3>
-                <p>You are stronger than you know and more graceful than you realize. May this year give you the courage to chase what sets your soul on fire, the wisdom to know your worth, and the peace to enjoy the quiet, beautiful moments in between.</p>
-            </div>
-        </section>
-
-        <!-- PHOTO + QUOTE CARDS -->
-        <section class="photo-quotes-section">
-            <h2 class="section-title">✨ Moments & Words</h2>
-            <div class="photo-quote-grid">
-                <div class="photo-quote-card" data-animate>
-                    <img src="photos/photo1.jpg" alt="Shristy">
-                    <div class="pq-text">
-                        <blockquote>"She leaves a little sparkle wherever she goes."</blockquote>
-                        <div class="pq-sub">— Kate Spade</div>
-                    </div>
-                </div>
-                <div class="photo-quote-card" data-animate>
-                    <img src="photos/photo6.png" alt="Shristy">
-                    <div class="pq-text">
-                        <blockquote>"The world is better because it has you in it. Never forget that."</blockquote>
-                        <div class="pq-sub">— For Shristy 🧸💕</div>
-                    </div>
-                </div>
-                <div class="photo-quote-card" data-animate>
-                    <img src="photos/photo3.jpg" alt="Shristy">
-                    <div class="pq-text">
-                        <blockquote>"A smile is the prettiest thing you can wear, and you wear it beautifully."</blockquote>
-                        <div class="pq-sub">— For Shristy 💕</div>
-                    </div>
-                </div>
-                <div class="photo-quote-card" data-animate>
-                    <img src="photos/photo4.jpg" alt="Shristy">
-                    <div class="pq-text">
-                        <blockquote>"She was made of sunlight and stardust, wild and perfectly imperfect."</blockquote>
-                        <div class="pq-sub">— n.r. hart</div>
-                    </div>
-                </div>
-                <div class="photo-quote-card" data-animate>
-                    <img src="photos/photo9.jpg" alt="Shristy">
-                    <div class="pq-text">
-                        <blockquote>"She wasn't looking for a knight. She was looking for a sword. She found her own."</blockquote>
-                        <div class="pq-sub">— Atticus</div>
-                    </div>
-                </div>
-                <div class="photo-quote-card" data-animate>
-                    <img src="photos/photo10.jpg" alt="Shristy">
-                    <div class="pq-text">
-                        <blockquote>"Be yourself; everyone else is already taken. And you — you're absolutely amazing."</blockquote>
-                        <div class="pq-sub">— Oscar Wilde ✨</div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- QUOTES CAROUSEL -->
-        <section class="quotes-section">
-            <h2 class="section-title">💝 Birthday Quotes</h2>
-            <div class="quotes-carousel">
-                <div class="quote-slide active">
-                    <div class="quote-mark">"</div>
-                    <p class="quote-text">The more you praise and celebrate your life, the more there is in life to celebrate.</p>
-                    <p class="quote-author">— Oprah Winfrey</p>
-                </div>
-                <div class="quote-slide">
-                    <div class="quote-mark">"</div>
-                    <p class="quote-text">Today you are you, that is truer than true. There is no one alive who is youer than you!</p>
-                    <p class="quote-author">— Dr. Seuss</p>
-                </div>
-                <div class="quote-slide">
-                    <div class="quote-mark">"</div>
-                    <p class="quote-text">Count your life by smiles, not tears. Count your age by friends, not years.</p>
-                    <p class="quote-author">— John Lennon</p>
-                </div>
-                <div class="quote-slide">
-                    <div class="quote-mark">"</div>
-                    <p class="quote-text">She believed she could, so she did. Happy Birthday to the girl who can do anything!</p>
-                    <p class="quote-author">— R.S. Grey</p>
-                </div>
-                <div class="quote-slide">
-                    <div class="quote-mark">"</div>
-                    <p class="quote-text">You are never too old to set another goal or to dream a new dream.</p>
-                    <p class="quote-author">— C.S. Lewis</p>
-                </div>
-                <div class="quote-slide">
-                    <div class="quote-mark">"</div>
-                    <p class="quote-text">The best is yet to come. Your story is only just beginning, Shristy.</p>
-                    <p class="quote-author">— With Love ❤️</p>
-                </div>
-            </div>
-            <div class="quote-dots" id="quote-dots"></div>
-        </section>
-
-        <!-- SPECIAL QUALITIES -->
-        <section class="memories-section">
-            <h2 class="section-title">🌟 What Makes You Special</h2>
-            <div class="memory-item" data-animate>
-                <div class="memory-icon">💖</div>
-                <div class="memory-content">
-                    <h4>Your Beautiful Heart</h4>
-                    <p>You have one of the kindest hearts anyone could ever know. The way you care for others, the way you love unconditionally — it's truly remarkable.</p>
-                </div>
-            </div>
-            <div class="memory-item" data-animate>
-                <div class="memory-icon">😊</div>
-                <div class="memory-content">
-                    <h4>Your Radiant Smile</h4>
-                    <p>Your smile has the power to light up the darkest room. It's infectious, warm, and genuine. Keep smiling, Shristy — the world needs your brightness.</p>
-                </div>
-            </div>
-            <div class="memory-item" data-animate>
-                <div class="memory-icon">💪</div>
-                <div class="memory-content">
-                    <h4>Your Inner Strength</h4>
-                    <p>Through every challenge, you've shown remarkable strength and resilience. You face life with courage and determination that inspires everyone around you.</p>
-                </div>
-            </div>
-            <div class="memory-item" data-animate>
-                <div class="memory-icon">🌻</div>
-                <div class="memory-content">
-                    <h4>Your Positive Energy</h4>
-                    <p>Like a sunflower that always turns toward the light, you bring positivity everywhere you go. Your energy is contagious, your optimism is uplifting.</p>
-                </div>
-            </div>
-            <div class="memory-item" data-animate>
-                <div class="memory-icon">✨</div>
-                <div class="memory-content">
-                    <h4>Your Unique Magic</h4>
-                    <p>There's a certain magic about you that can't be replicated. It's in the way you laugh, the way you see the world, and the way you make everyone feel special.</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- FINAL -->
-        <section class="final-section">
-            <div class="big-heart">❤️</div>
-            <div class="final-message">
-                <h2>Forever & Always</h2>
-                <p>Shristy, you are a blessing to everyone who knows you. Your presence makes the world brighter, warmer, and infinitely better. On this special day, I just want you to know how truly valued, loved, and appreciated you are.</p>
-                <p>May this birthday be the start of your best chapter yet — filled with love that overflows, laughter that never ends, success that keeps growing, and memories that last forever. 🥂</p>
-                <p>Here's to you, to your dreams, and to a lifetime of beautiful tomorrows. Never stop being the incredible person you are.</p>
-                <p class="signature">With all my love & warmest wishes 💕</p>
-                <br>
-                <div style="font-size:2rem;animation:emojiFloat 2s ease-in-out infinite;">🎂🎁🎈🎊🥳🌟💖🎉</div>
-            </div>
-        </section>
-    </div>
-
-    <button class="music-toggle" id="musicBtn" onclick="toggleMusic()" title="Toggle Music"
-        onmouseenter="document.getElementById('volPanel').classList.add('show')"
-    >🎵</button>
-    <div class="music-controls" id="volPanel"
-        onmouseleave="this.classList.remove('show')"
-    >
-        <label>🎵 Volume</label>
-        <input type="range" min="0" max="100" value="35" id="volSlider"
-            oninput="setVolume(this.value)">
-        <div class="vol-value" id="volLabel">35%</div>
-    </div>
-
-    <!-- Background Music (royalty-free birthday vibe) -->
-    <audio id="bgMusic" loop preload="auto">
-        <!-- Uses a free-to-use birthday music URL; falls back to Web Audio API -->
+    <!-- Hidden audio element for fallback streaming -->
+    <audio id="bgAudio" loop preload="auto">
         <source src="https://cdn.pixabay.com/audio/2022/10/18/audio_29642654b4.mp3" type="audio/mpeg">
-        <source src="https://cdn.pixabay.com/audio/2024/11/04/audio_4956b4eff1.mp3" type="audio/mpeg">
     </audio>
 
+    <!-- ========================================== -->
+    <!-- 10. JAVASCRIPT LOGIC & MUSIC ENGINE -->
+    <!-- ========================================== -->
     <script>
+        // All photos with titles, captions, and responsive aesthetic vector fallbacks
         const photos = [
-            { src:'photos/photo1.jpg', caption:'Gorgeous vibes ✨' },
-            { src:'photos/photo2.jpg', caption:'That cute smile 💕' },
-            { src:'photos/photo3.jpg', caption:'Pure happiness 😊' },
-            { src:'photos/photo4.jpg', caption:'Mood: Stunning 💫' },
-            { src:'photos/photo5.jpg', caption:'The sweetest soul 🌸' },
-            { src:'photos/photo6.png', caption:'Cutest ever 🧸💖' },
-            { src:'photos/photo7.jpg', caption:'Just a Wednesday ✨' },
-            { src:'photos/photo8.jpg', caption:'Little buddy 🐻💙' },
-            { src:'photos/photo9.jpg', caption:'Bullet vibes 🏍️🔥' },
-            { src:'photos/photo10.jpg', caption:'Camera roll gem 📷' },
-            // ====== ADD MORE PHOTOS HERE ======
-            // { src:'photos/photo11.jpg', caption:'Your caption' },
-            // ==================================
+            { 
+                src: "photos/photo1.jpg",
+                title: "Graceful Vibes", 
+                caption: "Effortless beauty and casual confidence in the afternoon sunshine.",
+                svgBg: "linear-gradient(135deg, #fce7f3 0%, #f472b6 50%, #db2777 100%)",
+                icon: "ph-fill ph-sparkle"
+            },
+            { 
+                src: "photos/photo2.jpg",
+                title: "That Cap & Cute Smile", 
+                caption: "A joyful smile that instantly lights up the whole room.",
+                svgBg: "linear-gradient(135deg, #fed7aa 0%, #fb923c 50%, #c2410c 100%)",
+                icon: "ph-fill ph-sun"
+            },
+            { 
+                src: "photos/photo3.jpg",
+                title: "Pure Happiness", 
+                caption: "Chocolate sweetness and cozy warm moments together.",
+                svgBg: "linear-gradient(135deg, #fbcfe8 0%, #fda4af 50%, #f43f5e 100%)",
+                icon: "ph-fill ph-heart"
+            },
+            { 
+                src: "photos/photo4.jpg",
+                title: "Mood: Stunning", 
+                caption: "Cosy winter jacket and a look that holds a thousand emotions.",
+                svgBg: "linear-gradient(135deg, #fae8ff 0%, #d946ef 50%, #86198f 100%)",
+                icon: "ph-fill ph-moon-stars"
+            },
+            { 
+                src: "photos/photo5.jpg",
+                title: "Thumb Up & Positivity", 
+                caption: "Cheering up every day with your sweet kindness.",
+                svgBg: "linear-gradient(135deg, #ccfbf1 0%, #2dd4bf 50%, #0f766e 100%)",
+                icon: "ph-fill ph-thumbs-up"
+            },
+            { 
+                src: "photos/photo6.png",
+                title: "Octopus & Hello Kitty", 
+                caption: "The cutest late night video call memory ever.",
+                svgBg: "linear-gradient(135deg, #ffe4e6 0%, #fb7185 50%, #9f1239 100%)",
+                icon: "ph-fill ph-smiley"
+            },
+            { 
+                src: "photos/photo7.jpg",
+                title: "Just a Wednesday", 
+                caption: "Cool aviator sunglasses and that charming Wednesday aura.",
+                svgBg: "linear-gradient(135deg, #fef08a 0%, #eab308 50%, #ca8a04 100%)",
+                icon: "ph-fill ph-sunglasses"
+            },
+            { 
+                src: "photos/photo8.jpg",
+                title: "Little Plush Buddy", 
+                caption: "Tuesday looked like this: cozy, soft, and adorable.",
+                svgBg: "linear-gradient(135deg, #e0e7ff 0%, #818cf8 100%)",
+                icon: "ph-fill ph-teddy-bear"
+            },
+            { 
+                src: "photos/photo9.jpg",
+                title: "Royal Enfield Night", 
+                caption: "Standing beside the bike with star filter and bold style.",
+                svgBg: "linear-gradient(135deg, #374151 0%, #1f2937 50%, #111827 100%)",
+                icon: "ph-fill ph-motorcycle"
+            },
+            { 
+                src: "photos/photo10.jpg",
+                title: "Camera Roll Gem", 
+                caption: "A timeless portrait in natural elegance.",
+                svgBg: "linear-gradient(135deg, #ffedd5 0%, #fb923c 100%)",
+                icon: "ph-fill ph-camera"
+            },
+            { 
+                src: "photos/photo11.jpg",
+                title: "Radiant in Blue", 
+                caption: "Striking blue jacket and an unforgettable warm look.",
+                svgBg: "linear-gradient(135deg, #bfdbfe 0%, #60a5fa 50%, #1d4ed8 100%)",
+                icon: "ph-fill ph-flower"
+            },
+            { 
+                src: "photos/photo12.jpg",
+                title: "Golden Hour Glow", 
+                caption: "Soft evening light kissing your beautiful features.",
+                svgBg: "linear-gradient(135deg, #fde68a 0%, #f59e0b 50%, #b45309 100%)",
+                icon: "ph-fill ph-sun-horizon"
+            },
+            { 
+                src: "photos/photo13.jpg",
+                title: "Sweet Expressions", 
+                caption: "Every reaction of yours brings a smile to anyone watching.",
+                svgBg: "linear-gradient(135deg, #f5d0fe 0%, #c084fc 50%, #7e22ce 100%)",
+                icon: "ph-fill ph-heart-straight"
+            },
+            { 
+                src: "photos/photo14.jpg",
+                title: "Playful Vibes", 
+                caption: "Laughter, lightness, and everything bright.",
+                svgBg: "linear-gradient(135deg, #fed7aa 0%, #f97316 100%)",
+                icon: "ph-fill ph-shooting-star"
+            },
+            { 
+                src: "photos/photo15.jpg",
+                title: "Nighttime Sparkle", 
+                caption: "Shining brightest when the city is quiet.",
+                svgBg: "linear-gradient(135deg, #cbd5e1 0%, #64748b 50%, #334155 100%)",
+                icon: "ph-fill ph-star"
+            },
+            { 
+                src: "photos/photo16.jpg",
+                title: "Thoughtful Moment", 
+                caption: "Quiet elegance that speaks louder than words.",
+                svgBg: "linear-gradient(135deg, #fef3c7 0%, #d97706 100%)",
+                icon: "ph-fill ph-feather"
+            },
+            { 
+                src: "photos/photo17.jpg",
+                title: "Unstoppable Grace", 
+                caption: "Walking through life with strength, grace, and kindness.",
+                svgBg: "linear-gradient(135deg, #fecdd3 0%, #e11d48 100%)",
+                icon: "ph-fill ph-fire"
+            },
+            { 
+                src: "photos/photo18.jpg",
+                title: "Gentle Gaze", 
+                caption: "Eyes filled with warmth, stories, and wonder.",
+                svgBg: "linear-gradient(135deg, #ddd6fe 0%, #8b5cf6 100%)",
+                icon: "ph-fill ph-eye"
+            },
+            { 
+                src: "photos/photo19.jpg",
+                title: "Candid Delight", 
+                caption: "The spontaneous, unposed moments that mean the most.",
+                svgBg: "linear-gradient(135deg, #fef9c3 0%, #ca8a04 100%)",
+                icon: "ph-fill ph-clover"
+            },
+            { 
+                src: "photos/photo20.jpg",
+                title: "Classic Elegance", 
+                caption: "Timeless simplicity that never fades.",
+                svgBg: "linear-gradient(135deg, #fed7aa 0%, #ea580c 100%)",
+                icon: "ph-fill ph-crown"
+            },
+            { 
+                src: "photos/photo21.jpg",
+                title: "Heaven on Earth", 
+                caption: "A rare soul who makes the universe feel softer and warmer.",
+                svgBg: "linear-gradient(135deg, #fce7f3 0%, #be185d 100%)",
+                icon: "ph-fill ph-infinity"
+            }
         ];
 
-        let currentLB = 0;
+        let showingAll = false;
+        let activeIndex = 0;
+        let currentRotation = 0;
 
-        function openGift() {
-            const l = document.getElementById('landing');
-            l.classList.add('hidden');
-            setTimeout(() => {
-                l.style.display = 'none';
-                document.getElementById('main-content').classList.add('visible');
-                launchConfetti(); startFloatingHearts(); createSparkles();
-                // Auto-start music when gift opens!
-                startMusicOnOpen();
-            }, 800);
+        function renderGallery() {
+            const grid = document.getElementById('galleryGrid');
+            grid.innerHTML = "";
+            const displayList = showingAll ? photos : photos.slice(0, 12);
+
+            displayList.forEach((p, idx) => {
+                const tilt = idx % 2 === 0 ? 'rotate-1' : '-rotate-1';
+                const card = document.createElement('div');
+                card.className = `polaroid glass-card p-4 pb-5 rounded-2xl shadow-md border border-amber-200/60 cursor-pointer ${tilt}`;
+                card.onclick = () => openLightbox(idx);
+                card.innerHTML = `
+                    <div class="aspect-[4/5] rounded-xl overflow-hidden mb-3 relative bg-stone-100 flex items-center justify-center">
+                        <!-- Real Image -->
+                        <img src="${p.src}" alt="${p.title}" 
+                             class="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+                             loading="lazy"
+                             onerror="this.style.display='none'; this.nextElementSibling.classList.remove('hidden');" />
+                        
+                        <!-- Responsive Fallback Vector Graphic -->
+                        <div class="hidden absolute inset-0 flex flex-col items-center justify-center text-white p-4 text-center" style="background: ${p.svgBg};">
+                            <div class="w-14 h-14 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center mb-3 shadow-lg border border-white/30">
+                                <i class="${p.icon} text-2xl text-white"></i>
+                            </div>
+                            <span class="font-serif font-bold text-base drop-shadow-md">${p.title}</span>
+                            <span class="text-[10px] uppercase tracking-widest text-white/80 mt-1 font-semibold">Memory #${idx + 1}</span>
+                        </div>
+
+                        <!-- Subtle overlay badge -->
+                        <div class="absolute bottom-2 right-2 px-2.5 py-0.5 rounded-full bg-black/40 backdrop-blur-sm text-white text-[10px] font-semibold tracking-wider">
+                            #${idx + 1}
+                        </div>
+                    </div>
+                    <div class="text-center px-1">
+                        <h3 class="font-serif font-bold text-stone-900 text-base mb-0.5">${p.title}</h3>
+                        <p class="text-stone-500 text-xs line-clamp-1 font-light">${p.caption}</p>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
         }
 
-        function openLightbox(i) {
-            currentLB = i;
-            document.getElementById('lb-img').src = photos[i].src;
-            document.getElementById('lb-caption').textContent = photos[i].caption;
-            document.getElementById('lb-counter').textContent = (i+1)+' / '+photos.length;
-            document.getElementById('lightbox').classList.add('open');
+        function toggleAllPhotos() {
+            showingAll = !showingAll;
+            document.getElementById('showAllBtnText').textContent = showingAll ? "Show Less" : "Show All 21 Moments ✨";
+            renderGallery();
+        }
+
+        function openExperience() {
+            const overlay = document.getElementById('welcomeOverlay');
+            overlay.classList.add('opacity-0', 'pointer-events-none');
+            setTimeout(() => overlay.remove(), 700);
+            burstConfetti();
+            startMusic();
+        }
+
+        function burstConfetti() {
+            confetti({
+                particleCount: 120,
+                spread: 80,
+                origin: { y: 0.6 },
+                colors: ['#cca238', '#edd695', '#f0b3a1', '#e6876d']
+            });
+        }
+
+        function burstHearts() {
+            confetti({
+                particleCount: 50,
+                spread: 70,
+                origin: { y: 0.7 },
+                shapes: ['circle'],
+                colors: ['#e6876d', '#cca238', '#f43f5e', '#ffd700']
+            });
+        }
+
+        function initPetals() {
+            const container = document.getElementById('petalsContainer');
+            const petalCount = 20;
+            for (let i = 0; i < petalCount; i++) {
+                const petal = document.createElement('div');
+                petal.className = 'petal';
+                const size = Math.random() * 14 + 8;
+                petal.style.width = `${size}px`;
+                petal.style.height = `${size * 1.3}px`;
+                petal.style.left = `${Math.random() * 100}vw`;
+                petal.style.animationDuration = `${Math.random() * 7 + 6}s`;
+                petal.style.animationDelay = `${Math.random() * 6}s`;
+                container.appendChild(petal);
+            }
+        }
+
+        // ===== LIGHTBOX =====
+        function openLightbox(idx) {
+            activeIndex = idx;
+            currentRotation = 0;
+            const p = photos[idx];
+            const modal = document.getElementById('lightboxModal');
+            const img = document.getElementById('lightboxImg');
+            const fallback = document.getElementById('lightboxFallback');
+
+            img.style.transform = `rotate(0deg)`;
+            img.style.display = 'block';
+            fallback.classList.add('hidden');
+            fallback.classList.remove('flex');
+
+            img.src = p.src;
+            img.onerror = function() {
+                img.style.display = 'none';
+                fallback.classList.remove('hidden');
+                fallback.classList.add('flex');
+                fallback.style.background = p.svgBg;
+                document.getElementById('lightboxFallbackIcon').className = p.icon + " text-4xl text-white";
+                document.getElementById('lightboxFallbackTitle').textContent = p.title;
+                document.getElementById('lightboxFallbackCaption').textContent = p.caption;
+            };
+
+            document.getElementById('lightboxTitle').textContent = p.title;
+            document.getElementById('lightboxCaption').textContent = p.caption;
+            document.getElementById('lightboxIndex').textContent = `${idx + 1} of ${photos.length}`;
+
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
             document.body.style.overflow = 'hidden';
         }
+
         function closeLightbox() {
-            document.getElementById('lightbox').classList.remove('open');
+            const modal = document.getElementById('lightboxModal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
             document.body.style.overflow = '';
         }
+
         function navLightbox(dir) {
-            currentLB = (currentLB+dir+photos.length)%photos.length;
-            const img = document.getElementById('lb-img');
-            img.style.animation='none'; img.offsetHeight;
-            img.style.animation='lbZoom 0.35s cubic-bezier(0.23,1,0.32,1)';
-            img.src = photos[currentLB].src;
-            document.getElementById('lb-caption').textContent = photos[currentLB].caption;
-            document.getElementById('lb-counter').textContent = (currentLB+1)+' / '+photos.length;
+            activeIndex = (activeIndex + dir + photos.length) % photos.length;
+            openLightbox(activeIndex);
         }
 
-        document.addEventListener('keydown', e => {
-            if(document.getElementById('lightbox').classList.contains('open')){
-                if(e.key==='Escape') closeLightbox();
-                if(e.key==='ArrowLeft') navLightbox(-1);
-                if(e.key==='ArrowRight') navLightbox(1);
+        function rotateLightboxImage() {
+            currentRotation = (currentRotation + 90) % 360;
+            const img = document.getElementById('lightboxImg');
+            const fallback = document.getElementById('lightboxFallback');
+            img.style.transform = `rotate(${currentRotation}deg)`;
+            fallback.style.transform = `rotate(${currentRotation}deg)`;
+        }
+
+        // ===== THE BIRTHDAY JAR NOTES =====
+        const jarNotes = [
+            "Your smile has a way of turning ordinary days into unforgettable memories. Happy Birthday, Shiristy! ✨",
+            "You are heaven on earth—a gentle reminder that true grace and kindness still exist in this world. 🌸",
+            "May every dream you hold in your quiet heart find its way into reality this year. You deserve all the stars. 🌟",
+            "No matter how far life takes us, you will always have a very special, irreplaceable place in my heart. 💖",
+            "You are stronger than you know, more radiant than you believe, and more loved than words can ever capture. ✨",
+            "Here's to late night conversations, shared laughter, and a friendship that withstands everything. Happiest birthday! 🥂",
+            "May your year ahead be as warm, radiant, and endlessly beautiful as you are. 🎂"
+        ];
+        let noteIdx = 0;
+        function drawJarNote() {
+            noteIdx = (noteIdx + 1) % jarNotes.length;
+            const box = document.getElementById('jarNoteBox');
+            box.style.opacity = '0';
+            setTimeout(() => {
+                document.getElementById('jarNoteText').textContent = `"${jarNotes[noteIdx]}"`;
+                box.style.opacity = '1';
+                burstHearts();
+            }, 250);
+        }
+
+        // ===== CAKE & CANDLES =====
+        let candlesBlown = false;
+        function blowOutCandles() {
+            if (candlesBlown) return;
+            candlesBlown = true;
+            document.getElementById('flame1').style.opacity = '0';
+            document.getElementById('flame2').style.opacity = '0';
+            document.getElementById('flame3').style.opacity = '0';
+            document.getElementById('wishMessage').classList.remove('hidden');
+            document.getElementById('blowBtn').classList.add('opacity-50', 'pointer-events-none');
+            burstConfetti();
+        }
+
+        function resetCandles() {
+            candlesBlown = false;
+            document.getElementById('flame1').style.opacity = '1';
+            document.getElementById('flame2').style.opacity = '1';
+            document.getElementById('flame3').style.opacity = '1';
+            document.getElementById('wishMessage').classList.add('hidden');
+            document.getElementById('blowBtn').classList.remove('opacity-50', 'pointer-events-none');
+        }
+
+        // ==============================================================
+        // 11. ACOUSTIC & VIOLIN SERENADE AUDIO ENGINE (Tone.js + Fallback)
+        // ==============================================================
+        let isPlayingMusic = false;
+        let toneSynth = null;
+        let toneLoop = null;
+
+        async function startMusic() {
+            if (isPlayingMusic) return;
+            try {
+                if (typeof Tone !== 'undefined') {
+                    await Tone.start();
+                    initToneSerenade();
+                    Tone.Transport.start();
+                    isPlayingMusic = true;
+                    updateMusicBtnUI();
+                    return;
+                }
+            } catch (err) {
+                console.log("Tone.js init fallback:", err);
             }
-            if((e.key==='Enter'||e.key===' ')&&document.getElementById('landing').style.display!=='none') openGift();
-        });
-        document.getElementById('lightbox').addEventListener('click',e=>{if(e.target===document.getElementById('lightbox'))closeLightbox()});
 
-        // Touch swipe for lightbox
-        let touchStartX = 0;
-        document.getElementById('lightbox').addEventListener('touchstart', e => { touchStartX = e.changedTouches[0].screenX; });
-        document.getElementById('lightbox').addEventListener('touchend', e => {
-            const diff = e.changedTouches[0].screenX - touchStartX;
-            if(Math.abs(diff)>50) { diff>0 ? navLightbox(-1) : navLightbox(1); }
-        });
-
-        function launchConfetti() {
-            const c = document.getElementById('confetti-canvas'), ctx = c.getContext('2d');
-            c.width=window.innerWidth; c.height=window.innerHeight;
-            const p=[], cols=['#ff6b9d','#c44dff','#ffd700','#ff85b3','#d466ff','#ffaa00','#ff4081','#7c4dff'];
-            for(let i=0;i<200;i++) p.push({
-                x:Math.random()*c.width, y:Math.random()*c.height-c.height,
-                w:Math.random()*10+5, h:Math.random()*6+3,
-                color:cols[Math.floor(Math.random()*cols.length)],
-                speed:Math.random()*3+2, angle:Math.random()*Math.PI*2,
-                spin:(Math.random()-0.5)*0.2, drift:(Math.random()-0.5)*2, opacity:1
-            });
-            let f=0;
-            function anim() {
-                ctx.clearRect(0,0,c.width,c.height); f++;
-                p.forEach(q=>{
-                    q.y+=q.speed; q.x+=q.drift+Math.sin(f*0.02)*0.5; q.angle+=q.spin;
-                    if(f>200) q.opacity-=0.005; if(q.opacity<=0) return;
-                    ctx.save(); ctx.translate(q.x,q.y); ctx.rotate(q.angle);
-                    ctx.globalAlpha=q.opacity; ctx.fillStyle=q.color;
-                    ctx.fillRect(-q.w/2,-q.h/2,q.w,q.h); ctx.restore();
-                });
-                if(f<500) requestAnimationFrame(anim); else ctx.clearRect(0,0,c.width,c.height);
-            }
-            anim();
-            window.addEventListener('resize',()=>{c.width=window.innerWidth;c.height=window.innerHeight});
-        }
-
-        function startFloatingHearts() {
-            const ctr = document.getElementById('floating-hearts');
-            const em = ['💖','💕','💗','✨','🌟','💜','💝','🦋','🌸','🎀'];
-            setInterval(()=>{
-                const h=document.createElement('span'); h.className='floating-heart';
-                h.textContent=em[Math.floor(Math.random()*em.length)];
-                h.style.left=Math.random()*100+'%';
-                h.style.fontSize=(Math.random()*1.5+0.8)+'rem';
-                h.style.animationDuration=(Math.random()*6+6)+'s';
-                ctr.appendChild(h); setTimeout(()=>h.remove(),12000);
-            },1000);
-        }
-
-        function createSparkles() {
-            for(let i=0;i<20;i++){
-                const s=document.createElement('div'); s.className='sparkle';
-                s.style.left=Math.random()*100+'%'; s.style.top=Math.random()*100+'%';
-                s.style.animationDelay=Math.random()*3+'s';
-                s.style.animationDuration=(Math.random()*2+1.5)+'s';
-                document.body.appendChild(s);
-            }
-        }
-
-        const observer = new IntersectionObserver(entries=>{
-            entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')});
-        },{threshold:0.15});
-        document.querySelectorAll('[data-animate]').forEach(el=>observer.observe(el));
-
-        const slides=document.querySelectorAll('.quote-slide'), dotsC=document.getElementById('quote-dots');
-        let curSlide=0;
-        slides.forEach((_,i)=>{
-            const d=document.createElement('span');
-            d.className='quote-dot'+(i===0?' active':'');
-            d.onclick=()=>goSlide(i); dotsC.appendChild(d);
-        });
-        function goSlide(n){
-            slides[curSlide].classList.remove('active');
-            dotsC.children[curSlide].classList.remove('active');
-            curSlide=n;
-            slides[curSlide].classList.add('active');
-            dotsC.children[curSlide].classList.add('active');
-        }
-        setInterval(()=>goSlide((curSlide+1)%slides.length),5000);
-
-        // ===== ENHANCED MUSIC SYSTEM =====
-        let audioCtx = null;
-        let isPlaying = false;
-        let bgAudio = document.getElementById('bgMusic');
-        let musicMode = 'none'; // 'none' | 'bg' | 'synth' | 'both'
-        let ambientNodes = [];
-        let melodyTimeout = null;
-
-        // Try to start background music on gift open
-        function startMusicOnOpen() {
-            bgAudio.volume = 0.35;
-            const playPromise = bgAudio.play();
-            if (playPromise !== undefined) {
-                playPromise.then(() => {
-                    musicMode = 'bg';
-                    isPlaying = true;
-                    updateMusicBtn();
-                    // Also play birthday melody on top after 1s
-                    setTimeout(() => playBirthdayMelody(), 1500);
-                }).catch(() => {
-                    // Autoplay blocked — fall back to synth
-                    startSynthMusic();
-                });
+            // Fallback audio element
+            const audio = document.getElementById('bgAudio');
+            if (audio) {
+                audio.volume = 0.4;
+                audio.play().then(() => {
+                    isPlayingMusic = true;
+                    updateMusicBtnUI();
+                }).catch(() => {});
             }
         }
 
-        function startSynthMusic() {
-            if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-            playAmbientPad();
-            playBirthdayMelody();
-            musicMode = 'synth';
-            isPlaying = true;
-            updateMusicBtn();
-        }
+        function initToneSerenade() {
+            if (toneSynth) return;
 
-        function updateMusicBtn() {
-            const btn = document.getElementById('musicBtn');
-            if (isPlaying) {
-                btn.classList.add('playing');
-                btn.textContent = '🔊';
-            } else {
-                btn.classList.remove('playing');
-                btn.textContent = '🎵';
-            }
+            // Warm violin & acoustic serenade synth with reverb
+            const reverb = new Tone.Reverb({ decay: 4, wet: 0.35 }).toDestination();
+            
+            // Violin lead
+            const violin = new Tone.MonoSynth({
+                oscillator: { type: 'sine' },
+                envelope: { attack: 0.25, decay: 0.4, sustain: 0.7, release: 1.2 },
+                filterEnvelope: { attack: 0.2, decay: 0.3, sustain: 0.8, baseFrequency: 300, octaves: 3 }
+            }).connect(reverb);
+            violin.volume.value = -8;
+
+            // Acoustic harp/piano harmony
+            const harmony = new Tone.PolySynth(Tone.Synth, {
+                oscillator: { type: 'triangle' },
+                envelope: { attack: 0.05, decay: 1.2, sustain: 0.2, release: 1.5 }
+            }).connect(reverb);
+            harmony.volume.value = -12;
+
+            // Romantic Birthday Melody in F Major (gentle, emotional tempo)
+            const notes = [
+                { time: "0:0", note: "C4", dur: "4n" },
+                { time: "0:1", note: "C4", dur: "8n" },
+                { time: "0:1.5", note: "D4", dur: "4n" },
+                { time: "0:2.5", note: "C4", dur: "4n" },
+                { time: "0:3.5", note: "F4", dur: "4n" },
+                { time: "1:1", note: "E4", dur: "2n" },
+
+                { time: "2:0", note: "C4", dur: "4n" },
+                { time: "2:1", note: "C4", dur: "8n" },
+                { time: "2:1.5", note: "D4", dur: "4n" },
+                { time: "2:2.5", note: "C4", dur: "4n" },
+                { time: "2:3.5", note: "G4", dur: "4n" },
+                { time: "3:1", note: "F4", dur: "2n" },
+
+                { time: "4:0", note: "C4", dur: "4n" },
+                { time: "4:1", note: "C4", dur: "8n" },
+                { time: "4:1.5", note: "C5", dur: "4n" },
+                { time: "4:2.5", note: "A4", dur: "4n" },
+                { time: "4:3.5", note: "F4", dur: "4n" },
+                { time: "5:0.5", note: "E4", dur: "4n" },
+                { time: "5:1.5", note: "D4", dur: "2n" },
+
+                { time: "6:0", note: "Bb4", dur: "4n" },
+                { time: "6:1", note: "Bb4", dur: "8n" },
+                { time: "6:1.5", note: "A4", dur: "4n" },
+                { time: "6:2.5", note: "F4", dur: "4n" },
+                { time: "6:3.5", note: "G4", dur: "4n" },
+                { time: "7:1", note: "F4", dur: "1m" }
+            ];
+
+            const chords = [
+                { time: "0:0", notes: ["F3", "A3", "C4"] },
+                { time: "1:0", notes: ["C3", "G3", "C4"] },
+                { time: "2:0", notes: ["F3", "A3", "C4"] },
+                { time: "3:0", notes: ["C3", "E3", "G3"] },
+                { time: "4:0", notes: ["D3", "F3", "A3"] },
+                { time: "5:0", notes: ["Bb2", "D3", "F3"] },
+                { time: "6:0", notes: ["C3", "E3", "G3"] },
+                { time: "7:0", notes: ["F3", "A3", "C4"] },
+            ];
+
+            const part = new Tone.Part((time, value) => {
+                violin.triggerAttackRelease(value.note, value.dur, time);
+            }, notes).start(0);
+
+            const chordPart = new Tone.Part((time, value) => {
+                harmony.triggerAttackRelease(value.notes, "2n", time);
+            }, chords).start(0);
+
+            part.loop = true;
+            part.loopEnd = "8:0";
+            chordPart.loop = true;
+            chordPart.loopEnd = "8:0";
+
+            Tone.Transport.bpm.value = 88;
+            toneSynth = { violin, harmony, part, chordPart };
         }
 
         function toggleMusic() {
-            if (isPlaying) {
-                // Stop everything
-                bgAudio.pause();
-                bgAudio.currentTime = 0;
-                if (audioCtx) { audioCtx.close(); audioCtx = null; }
-                ambientNodes.forEach(n => { try { n.stop(); } catch(e){} });
-                ambientNodes = [];
-                if (melodyTimeout) clearTimeout(melodyTimeout);
-                isPlaying = false;
-                musicMode = 'none';
-            } else {
-                // Try background audio first
-                bgAudio.volume = 0.35;
-                const p = bgAudio.play();
-                if (p !== undefined) {
-                    p.then(() => {
-                        musicMode = 'bg';
-                        isPlaying = true;
-                        setTimeout(() => playBirthdayMelody(), 500);
-                    }).catch(() => {
-                        startSynthMusic();
-                    });
-                } else {
-                    startSynthMusic();
+            if (isPlayingMusic) {
+                if (typeof Tone !== 'undefined' && Tone.Transport.state === 'started') {
+                    Tone.Transport.pause();
                 }
+                const audio = document.getElementById('bgAudio');
+                if (audio) audio.pause();
+                isPlayingMusic = false;
+            } else {
+                startMusic();
             }
-            updateMusicBtn();
+            updateMusicBtnUI();
         }
 
-        // ===== AMBIENT PAD (dreamy background) =====
-        function playAmbientPad() {
-            if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-            const chords = [
-                [261.63, 329.63, 392.00], // C major
-                [349.23, 440.00, 523.25], // F major
-                [293.66, 369.99, 440.00], // D minor
-                [392.00, 493.88, 587.33], // G major
-            ];
-            const masterGain = audioCtx.createGain();
-            masterGain.gain.value = 0.06;
-            masterGain.connect(audioCtx.destination);
-
-            let chordTime = audioCtx.currentTime;
-            for (let repeat = 0; repeat < 4; repeat++) {
-                chords.forEach(chord => {
-                    chord.forEach(freq => {
-                        const osc = audioCtx.createOscillator();
-                        const env = audioCtx.createGain();
-                        osc.type = 'sine';
-                        osc.frequency.value = freq;
-
-                        env.gain.setValueAtTime(0, chordTime);
-                        env.gain.linearRampToValueAtTime(1, chordTime + 0.8);
-                        env.gain.setValueAtTime(1, chordTime + 2.5);
-                        env.gain.linearRampToValueAtTime(0, chordTime + 3.8);
-
-                        osc.connect(env);
-                        env.connect(masterGain);
-                        osc.start(chordTime);
-                        osc.stop(chordTime + 4);
-                        ambientNodes.push(osc);
-
-                        // Add a soft harmonic
-                        const osc2 = audioCtx.createOscillator();
-                        const env2 = audioCtx.createGain();
-                        osc2.type = 'triangle';
-                        osc2.frequency.value = freq * 2;
-                        env2.gain.setValueAtTime(0, chordTime);
-                        env2.gain.linearRampToValueAtTime(0.3, chordTime + 1);
-                        env2.gain.linearRampToValueAtTime(0, chordTime + 3.5);
-                        osc2.connect(env2);
-                        env2.connect(masterGain);
-                        osc2.start(chordTime);
-                        osc2.stop(chordTime + 4);
-                        ambientNodes.push(osc2);
-                    });
-                    chordTime += 4;
-                });
+        function updateMusicBtnUI() {
+            const btnText = document.getElementById('musicText');
+            const btnIcon = document.getElementById('musicIcon');
+            if (isPlayingMusic) {
+                btnText.textContent = "Pause Serenade ⏸";
+                btnIcon.className = "ph-fill ph-speaker-high text-amber-600 text-base animate-pulse";
+            } else {
+                btnText.textContent = "Play Serenade 🎵";
+                btnIcon.className = "ph-fill ph-music-notes text-amber-600 text-base";
             }
         }
 
-        // ===== RICH BIRTHDAY MELODY =====
-        function playBirthdayMelody() {
-            if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        window.onload = function() {
+            renderGallery();
+            initPetals();
+        };
 
-            // Happy Birthday melody — two octaves with piano-like envelope
-            const melody = [
-                // Line 1: "Happy birthday to you"
-                { note: 'C4', dur: 0.35 }, { note: 'C4', dur: 0.15 },
-                { note: 'D4', dur: 0.5 }, { note: 'C4', dur: 0.5 },
-                { note: 'F4', dur: 0.5 }, { note: 'E4', dur: 1.0 },
-                // Line 2: "Happy birthday to you"
-                { note: 'C4', dur: 0.35 }, { note: 'C4', dur: 0.15 },
-                { note: 'D4', dur: 0.5 }, { note: 'C4', dur: 0.5 },
-                { note: 'G4', dur: 0.5 }, { note: 'F4', dur: 1.0 },
-                // Line 3: "Happy birthday dear Shristy"
-                { note: 'C4', dur: 0.35 }, { note: 'C4', dur: 0.15 },
-                { note: 'C5', dur: 0.5 }, { note: 'A4', dur: 0.5 },
-                { note: 'F4', dur: 0.5 }, { note: 'E4', dur: 0.5 }, { note: 'D4', dur: 1.0 },
-                // Line 4: "Happy birthday to you"
-                { note: 'Bb4', dur: 0.35 }, { note: 'Bb4', dur: 0.15 },
-                { note: 'A4', dur: 0.5 }, { note: 'F4', dur: 0.5 },
-                { note: 'G4', dur: 0.5 }, { note: 'F4', dur: 1.0 },
-            ];
-
-            const noteFreqs = {
-                'C4':261.63,'D4':293.66,'E4':329.63,'F4':349.23,'G4':392.00,
-                'A4':440.00,'Bb4':466.16,'B4':493.88,'C5':523.25,'D5':587.33
-            };
-
-            const masterGain = audioCtx.createGain();
-            masterGain.gain.value = 0.2;
-            masterGain.connect(audioCtx.destination);
-
-            let t = audioCtx.currentTime + 0.1;
-
-            melody.forEach(({ note, dur }) => {
-                const freq = noteFreqs[note];
-                if (!freq) return;
-
-                // Main tone (piano-like)
-                const osc = audioCtx.createOscillator();
-                const gain = audioCtx.createGain();
-                osc.type = 'triangle';
-                osc.frequency.setValueAtTime(freq, t);
-                gain.gain.setValueAtTime(0, t);
-                gain.gain.linearRampToValueAtTime(1, t + 0.02);
-                gain.gain.exponentialRampToValueAtTime(0.4, t + dur * 0.3);
-                gain.gain.exponentialRampToValueAtTime(0.001, t + dur * 0.95);
-                osc.connect(gain); gain.connect(masterGain);
-                osc.start(t); osc.stop(t + dur);
-
-                // Warm harmonic
-                const osc2 = audioCtx.createOscillator();
-                const gain2 = audioCtx.createGain();
-                osc2.type = 'sine';
-                osc2.frequency.setValueAtTime(freq * 2, t);
-                gain2.gain.setValueAtTime(0, t);
-                gain2.gain.linearRampToValueAtTime(0.15, t + 0.02);
-                gain2.gain.exponentialRampToValueAtTime(0.001, t + dur * 0.7);
-                osc2.connect(gain2); gain2.connect(masterGain);
-                osc2.start(t); osc2.stop(t + dur);
-
-                // Sub bass layer
-                const osc3 = audioCtx.createOscillator();
-                const gain3 = audioCtx.createGain();
-                osc3.type = 'sine';
-                osc3.frequency.setValueAtTime(freq / 2, t);
-                gain3.gain.setValueAtTime(0, t);
-                gain3.gain.linearRampToValueAtTime(0.1, t + 0.03);
-                gain3.gain.exponentialRampToValueAtTime(0.001, t + dur * 0.8);
-                osc3.connect(gain3); gain3.connect(masterGain);
-                osc3.start(t); osc3.stop(t + dur);
-
-                t += dur;
-            });
-
-            // Schedule a repeat after the melody ends
-            const totalDur = melody.reduce((sum, n) => sum + n.dur, 0);
-            melodyTimeout = setTimeout(() => {
-                if (isPlaying) playBirthdayMelody();
-            }, (totalDur + 2) * 1000);
-        }
-
-        // ===== VOLUME CONTROL =====
-        function setVolume(val) {
-            const v = val / 100;
-            bgAudio.volume = v;
-            document.getElementById('volLabel').textContent = val + '%';
-        }
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (!document.getElementById('lightboxModal').classList.contains('hidden')) {
+                if (e.key === 'Escape') closeLightbox();
+                if (e.key === 'ArrowLeft') navLightbox(-1);
+                if (e.key === 'ArrowRight') navLightbox(1);
+            }
+        });
     </script>
 </body>
 </html>
